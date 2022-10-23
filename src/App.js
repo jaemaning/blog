@@ -1,23 +1,37 @@
 import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react';
 
 function App() {
+
+  let post = '블로그 내용'
+  let blog_name = 'black_id'
+  let [글제목, b] = useState(['남자 코트 추천', '재만 바보', '리액트 재밌다'])
+  let [글날짜, setDatetime] = useState(['2022-10-22', '2022-10-23', '2022-10-24'])
+
+  let [a, c] = [1, 2];
+  // let num = [1,2]
+  // let a = num[0]
+  // let c = num[1]
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="black-nav">
+        <h4 id={blog_name}>Jaeman blog</h4>
+      </div>
+      <div className='list'>
+        <h4>{글제목[0]}</h4>
+        <p>{글날짜[0]}</p>
+      </div>
+      <div className='list'>
+        <h4>{글제목[1]}</h4>
+        <p>{글날짜[1]}</p>
+      </div>
+      <div className='list'>
+        <h4>{글제목[2]}</h4>
+        <p>{글날짜[2]}</p>
+      </div>
+      <h4>{post}</h4>
     </div>
   );
 }
