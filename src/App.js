@@ -9,6 +9,7 @@ function App() {
   let [글제목, 글제목변경] = useState(['남자 코트 추천', '재만 바보', '리액트 재밌다']);
   let [글날짜, setDatetime] = useState(['2022-10-22', '2022-10-23', '2022-10-24']);
   let [like_count, setLikecount] = useState(0);
+  let [modal, setModal] = useState(false);
 
   // function like_click() {
   //   like_count += 1
@@ -48,12 +49,32 @@ function App() {
       </div>
 
       <div className='list'>
-        <h4>{글제목[2]}</h4>
+        <h4 onClick={() => { modal == false ? setModal(true) : setModal(false) }}>{글제목[2]}</h4>
         <p>{글날짜[2]}</p>
       </div>
-      <h4>{post}</h4>
+
+
+      {
+        modal == true ? <Modal></Modal> : null
+      }
+
     </div >
+
+
   );
 }
+
+function Modal() {
+  return (
+    <div className='modal'>
+      <h4>제목</h4>
+      <p>날짜</p>
+      <p>상세내용</p>
+    </div>
+  )
+}
+
+
+
 
 export default App;
