@@ -8,21 +8,17 @@ function App() {
   let blog_name = 'black_id';
   let [글제목, 글제목변경] = useState(['남자 코트 추천', '재만 바보', '리액트 재밌다']);
   let [글날짜, setDatetime] = useState(['2022-10-22', '2022-10-23', '2022-10-24']);
-  let [like_count, setLikecount] = useState(0);
+  let [like_count, setLikecount] = useState([0, 0, 0]);
   let [modal, setModal] = useState(false);
+  console.log(like_count[0])
 
   // function like_click() {
   //   like_count += 1
   // }
 
-  let [a, c] = [1, 2];
-  // let num = [1,2]
-  // let a = num[0]
-  // let c = num[1]
-
   return (
     <div className="App">
-      <div className="black-nav">
+      {/* <div className="black-nav">
         <h4 id={blog_name}>Jaeman blog</h4>
       </div>
       <div className='list'>
@@ -51,11 +47,27 @@ function App() {
       <div className='list'>
         <h4 onClick={() => { modal == false ? setModal(true) : setModal(false) }}>{글제목[2]}</h4>
         <p>{글날짜[2]}</p>
-      </div>
-
+      </div> */}
 
       {
         modal == true ? <Modal></Modal> : null
+      }
+
+      {
+        글제목.map(function (a, i) {
+          return (
+            <div className='list'>
+              <h4 onClick={() => { modal == false ? setModal(true) : setModal(false) }}>{글제목[i]}</h4>
+              <p>{글날짜[i]}</p>
+              <span onClick={() => {
+                let copy_likecount = [...like_count];
+                copy_likecount[i] = copy_likecount[i] + 1;
+                setLikecount(copy_likecount)
+              }}>👍
+                <span>{like_count[i]}</span></span>
+            </div>
+          )
+        })
       }
 
     </div >
