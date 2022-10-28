@@ -10,6 +10,7 @@ function App() {
   let [글날짜, setDatetime] = useState(['2022-10-22', '2022-10-23', '2022-10-24']);
   let [like_count, setLikecount] = useState([0, 0, 0]);
   let [modal, setModal] = useState(false);
+  let [modal글제목, setModal글제목] = useState(0)
   console.log(like_count[0])
 
   // function like_click() {
@@ -18,10 +19,10 @@ function App() {
 
   return (
     <div className="App">
-      {/* <div className="black-nav">
+      <div className="black-nav">
         <h4 id={blog_name}>Jaeman blog</h4>
       </div>
-      <div className='list'>
+      {/* <div className='list'>
         <h4>{글제목[0]} <span onClick={() => { setLikecount(like_count + 1) }}>좋아요</span> {like_count} </h4>
 
         <button onClick={() => {
@@ -49,15 +50,13 @@ function App() {
         <p>{글날짜[2]}</p>
       </div> */}
 
-      {
-        modal == true ? <Modal></Modal> : null
-      }
+
 
       {
         글제목.map(function (a, i) {
           return (
             <div className='list'>
-              <h4 onClick={() => { modal == false ? setModal(true) : setModal(false) }}>{글제목[i]}</h4>
+              <h4 onClick={() => { modal == false ? setModal(true) : setModal(false); setModal글제목(i) }}>{글제목[i]}</h4>
               <p>{글날짜[i]}</p>
               <span onClick={() => {
                 let copy_likecount = [...like_count];
@@ -69,6 +68,9 @@ function App() {
           )
         })
       }
+      {
+        modal == true ? <Modal modal글제목={modal글제목} 글제목변경={글제목변경} 글제목={글제목} 글날짜={글날짜}></Modal> : null
+      }
 
     </div >
 
@@ -76,12 +78,13 @@ function App() {
   );
 }
 
-function Modal() {
+function Modal(props) {
   return (
     <div className='modal'>
-      <h4>제목</h4>
-      <p>날짜</p>
+      <h4>{props.글제목[props.modal글제목]}</h4>
+      <p>{props.글날짜[props.modal글제목]}</p>
       <p>상세내용</p>
+      <button onClick={() => { props.글제목변경(['여자 코트 추천', '강남 우동 맛집', '파이썬독학']) }}>글수정</button>
     </div>
   )
 }
