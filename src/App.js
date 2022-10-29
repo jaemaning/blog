@@ -11,7 +11,8 @@ function App() {
   let [like_count, setLikecount] = useState([0, 0, 0]);
   let [modal, setModal] = useState(false);
   let [modal글제목, setModal글제목] = useState(0)
-  console.log(like_count[0])
+  let [글추가, 글추가변경] = useState()
+
 
   // function like_click() {
   //   like_count += 1
@@ -64,12 +65,25 @@ function App() {
                 setLikecount(copy_likecount)
               }}>👍
                 <span>{like_count[i]}</span></span>
+              <button onClick={() => {
+                let copy_글제목 = [...글제목]
+                copy_글제목.splice(i, 1)
+                글제목변경(copy_글제목)
+              }}>삭제</button>
             </div>
           )
         })
       }
       {
         modal == true ? <Modal modal글제목={modal글제목} 글제목변경={글제목변경} 글제목={글제목} 글날짜={글날짜}></Modal> : null
+      }
+      {
+
+        <input onChange={(e) => { 글추가변경(e.target.value); }}></input>
+
+      }
+      {
+        <button onClick={() => { 글제목변경(글제목.concat(글추가)) }}>글추가하기</button>
       }
 
     </div >
