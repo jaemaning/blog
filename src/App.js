@@ -79,11 +79,21 @@ function App() {
       }
       {
 
-        <input onChange={(e) => { 글추가변경(e.target.value); }}></input>
+        <input onChange={(e) => { 글추가변경(e.target.value); console.log(글추가) }}></input>
 
       }
       {
-        <button onClick={() => { 글제목변경(글제목.concat(글추가)) }}>글추가하기</button>
+        <button onClick={() => {
+          let copy_글제 = [...글제목]
+          copy_글제.unshift(글추가)
+          console.log(copy_글제)
+          글제목변경(copy_글제)
+
+          let copy_글날짜 = [...글날짜]
+          let currentDate = new Date().toJSON().slice(0, 10);
+          copy_글날짜.unshift(currentDate)
+          setDatetime(copy_글날짜)
+        }}>글추가하기</button>
       }
 
     </div >
